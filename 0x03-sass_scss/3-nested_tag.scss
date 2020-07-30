@@ -1,0 +1,10 @@
+/* Sass file that assigns Nested tag */
+$margin: 10px;
+$padding: 0px;
+body {
+    margin: $margin * 0;
+    padding: $padding;
+    p {
+        margin: $margin;
+    }
+}

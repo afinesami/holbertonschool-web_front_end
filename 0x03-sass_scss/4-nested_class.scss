@@ -1,0 +1,9 @@
+/* Sass file Nested class */
+$color: #3D3D3D;
+body {
+    color: $color;
+    .red {
+        $color: #FF0000;
+        color: $color;
+    }
+}
