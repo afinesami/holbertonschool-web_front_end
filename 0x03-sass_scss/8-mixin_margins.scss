@@ -1,0 +1,7 @@
+/* Sass file Margin mixin  */
+@mixin marg($prop) {
+    margin-left: $prop;
+    margin-right: $prop;
+}
+body { @include marg(10px); }
+div { @include marg(15px); }

@@ -1,0 +1,11 @@
+/* Sass file more nested tags */
+$font-size: 10px;
+body {
+    font-size: $font-size * 1.4;
+    h1 {
+        font-size: $font-size * 1.6;
+        &.smaller {
+            font-size: $font-size * 1.2;
+        }
+    }
+}
