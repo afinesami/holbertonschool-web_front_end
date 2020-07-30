@@ -1,0 +1,6 @@
+/* Sass file Loop Headers */
+$size: 1px;
+
+@for $i from 1 through 5 {
+    h#{$i} {  font-size: #{$size * $i}; }
+} 
