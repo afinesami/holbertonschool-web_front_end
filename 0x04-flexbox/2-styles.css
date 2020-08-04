@@ -1,4 +1,3 @@
-
 /* SUMMARY
     1. GLOBAL
     2. LAYOUT
@@ -20,7 +19,6 @@
     --color-primary: #D73953;
     --color-black:  #090909;
     --color-white: #ffffff;
-    --color-grey: #a0a0a0;
     --color-light-grey: #f3f3f3;
     --color-dark-grey: #353535;
   
@@ -180,23 +178,18 @@
   
   /* Grid
       ============================= */
+  
   .row {
-      display: flex;
+    display: flex;
   }
+  
   ul.row {
     margin: 0;
     padding: 0;
     list-style: none;
   }
   
-  /* .row::after {
-    content: '';
-    display: table;
-    clear: both;
-  } */
-  
   [class*='col-'] {
-    /* float: left; */
     padding: 0.5rem;
   }
   
@@ -263,9 +256,6 @@
   
   .header {
     padding: var(--header-padding);
-         position: relative;
-         z-index: 3;
-         background: transparent !important;
   }
   
   .header-logo {
@@ -315,10 +305,10 @@
   /* Section (all styles)
       ============================= */
   
-  /* .section {
+  .section {
     padding: var(--section-padding);
   }
-   */
+  
   .section-header {
     text-align: var(--section-header-align);
     padding: var(--section-header-padding);
@@ -376,10 +366,13 @@
   .section-hero .section-inner {
     padding: 10rem 40rem 2rem 0;
   }
-  /* Section BLOG ============================= */
+  
+ /* Section BLOG
+      ============================= */
   .section-blog .row {
-      flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
+
   /*** 4. CARD ***/
   
   /* Card (all styles)
@@ -391,7 +384,7 @@
   
   /* Card WORK
       ============================= */
-      
+  
   .card-work .card-outer {
     position: relative;
     overflow: hidden;
