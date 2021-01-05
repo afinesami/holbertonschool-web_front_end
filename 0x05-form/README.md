@@ -12,4 +12,4 @@
 
 ## Author
 
-**Lafine Sami** - [dantsub](https://github.com/afinesami)
+**Lafine Sami** - [Github](https://github.com/afinesami)
