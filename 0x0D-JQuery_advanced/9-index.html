@@ -12,6 +12,7 @@
     <body>
 
         <script type='application/javascript'>
+
         function createSearchForm() {
             $('body').append(`
             <input type='text'>
@@ -55,7 +56,7 @@
                     })
                     buildPagination(response.query.searchinfo.totalhits, 10, offset);
                 })
-                .catch(function (error) { console.log(error); });
+                .catch(function(error){console.log(error);});
         }
 
         function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
