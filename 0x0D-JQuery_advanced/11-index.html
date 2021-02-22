@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 11</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+
+        <script type='application/javascript'>
+        $(document).ready(function () {
+            function addPostRow(data) {
+                $("body").append(`
+                        <p>
+                            <span>Post created with id ${data.id}, title: ${data.title}, author: ${data.author}</span>
+                        </p>
+                    `);
+            };
+            function listPosts() {
+                $.get('http://localhost:3000/posts')
+                    .then(function (data) {
+                        data.forEach(function (item) {
+                            addPostRow(item);
+                        })
+                    })
+                    .catch(function () {
+                        window.alert('Server Error');
+                    })
+            }
+
+            function buildForm() {
+                $("body").append(`
+                        <form class="myForm">
+                            <div>
+                                <label for="author">Author</label>
+                                <input type="text" id="author">
+                            </div>
+                            <div>
+                                <label for="title">Title</label>
+                                <input type="textarea" id="title">
+                            </div>
+                            <input class="formBtn" type="submit" value="Submit">
+                        </form>
+                    `);
+                $(".formBtn").click(function (e) {
+                    e.preventDefault();
+                    sendForm();
+                    return false;
+                })
+            }
+
+            function sendForm() {
+                $(".myForm").append("<p>About to send the query to the API</p>")
+                let data = {
+                    author: $("#author").val(),
+                    title: $("#title").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/posts",
+                    data: data,
+                    success: function (res) {
+                        addPostRow(res);
+                    },
+                    error: function () {
+                        alert("Error sending the POST query");
+                    }
+                })
+            };
+            listPosts();
+            buildForm();
+        });
+        </script>
+
+    </body>
+
+</html>

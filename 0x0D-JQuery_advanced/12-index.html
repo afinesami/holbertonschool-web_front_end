@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 11</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+
+        <script type='application/javascript'>
+
+        function addPostRow(data) {
+            $('body').append(`<p id='row-${data.id}'><span>(delete)</span>
+			<span>Post created with id ${data.id}, title: ${data.title}, author: ${data.author}</span></p>`);
+            $(`#row-${data.id} span:first`).click(function () {
+                deletePost(data.id);
+            })
+        }
+
+        function listPosts() {
+            let url = 'http://localhost:3000/posts';
+            $.get(url, function (data, status) {
+                if (status == 'success') {
+                    data.forEach(function (post) {
+                        addPostRow(post);
+                    })
+                } else {
+                    alert('Server Error');
+                }
+            })
+        }
+
+        function buildForm() {
+            $('body').append(`
+            <form>
+                <div>
+                    <label for='author'>Author</label>
+                    <input type='text' id='author'>
+                </div>
+                <div>
+                    <label for='title'>Title</label>
+                    <textarea id='title'></textarea>
+                </div>
+                <input type='submit'>
+            </form>
+            `);
+            $('input:last').click(function (e) {
+                e.preventDefault();
+                sendForm();
+            })
+        }
+
+        function sendForm() {
+            $('form').after('<p>About to send the query to the API</p>');
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:3000/posts',
+                data: { title: $('#title').val(), author: $('#author').val() },
+                success: function (result) {
+                    addPostRow(result);
+                },
+                error: function () {
+                    alert('Error sending the POST query');
+                }
+            })
+        }
+
+        function deletePost(id) {
+            $.ajax({
+                type: 'DELETE',
+                url: `http://localhost:3000/posts/${id}`,
+                success: function () {
+                    $(`#row-${id}`).remove();
+                },
+                error: function () {
+                    alert('Post was not deleted');
+                }
+            })
+        }
+
+        listPosts();
+        buildForm();
+        </script>
+
+    </body>
+
+</html>
